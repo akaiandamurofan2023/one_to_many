@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>AKB48  選抜総選挙　DEBATE FORUM</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>  
+  </head>
+
+  <body>
+    <header>
+      <nav>
+      <h1>
+          <%= link_to 'AKB48 選抜総選挙　DEBATE FORUM', root_path , id: "logo" %> 
+      </h1>    
+      <center>
+          <% if user_signed_in? %> 
+            <button class="btn btn-large btn-default" type="button"><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></button> 
+            <button class="btn btn-large btn-success" type="button"><%= link_to "ポスト一覧", posts_path %> </button>
+            <button class="btn btn-large btn-info" type="button"><%= link_to 'マイページ', user_path(current_user) %> </button> 
+            <button class="btn btn-large btn-info" type="button"><%= link_to 'ユーザー一覧', users_path %> </button> 
+            <button class="btn btn-large btn-danger" type="button"><%= link_to 'プロフィール変更', edit_user_registration_path %> </button> 
+                        <!-- <a href="http://www.akb48.co.jp/sousenkyo49th"></a> -->
+            <button class="btn btn-large btn-warning" type="button">  <%= link_to "第9回AKB48選抜総選挙全順位(確定）", "http://www.akb48.co.jp/sousenkyo49th" %>  </button>
+            <button class="btn btn-large btn-warning" type="button"><%= link_to "第9回AKB48選抜総選挙1位〜１００位速報", "http://www.akb48.co.jp/sousenkyo49th/quick_announcement" %></button>
+              <button class="btn btn-large btn-warning" type="button"><%= link_to "過去の総選挙結果", "http://www.akb48.co.jp/sousenkyo49th/history/" %></button><br/>
+              <p>warning!：右三つのオレンジ色のボタンはは外部サイトのリンクである事を示しています！</p>
+          <% else %>
+      </h1>    
+            <button class="btn btn-large btn-info" type="button"><%= link_to "サインアップ", new_user_registration_path %></button> 
+            <button class="btn btn-large btn-default" type="button"><%= link_to "ログイン", new_user_session_path %></button>
+          <% end %>
+      </h1>   
+      </center>
+
+      </nav>   
+    </header> 
+<h3>
+
+第9回AKB48選抜総選挙では、第1位 ：指原 莉乃（HKT48・チームH / STU48 兼任）と第2位 ：渡辺 麻友（AKB48・チームB）は次の総選挙の不出馬の表明しました！果たして来年の総選挙は誰が女王の座を手に入れるのでしょうか？<br/>
+皆さんの意見を募集したくて本サイトを開設しました。<br/>
+
+</h3>     
+
+    <%= yield %>
+
+  </body>
+
+
+<p>
+ご注意：
+誹謗中傷等の投稿またはコメントはおやめください！
+発見した場合は退会して頂くことになります！
+</p>
+
+
+
+
+
+
+</html>

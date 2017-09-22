@@ -1,0 +1,43 @@
+
+
+ <center><h1>my ユーザー名 : <%= @user.name %>
+
+<% if current_user != @user %>
+  
+  <% if @user.followed_by?(current_user) %>
+    <%= link_to "follow解除", user_relationships_path(@user), method: :delete %>
+  
+  <% else %>
+    <%= link_to "followする", user_relationships_path(@user), method: :post %>
+  <% end %>
+<% end%>
+</center>
+<h2>
+<center>
+
+<%= link_to 'follows', follows_user_path(@user)%>
+
+<%= link_to 'followers', followers_user_path(@user)%>
+</center>
+</h2>
+<table class="table table-striped">
+<center>
+<h2><div class="text">MY POSTS 投稿数: <%= @user.posts.count %></div></h2>
+
+    <% @user.posts.each do |post| %>
+        <h3>
+        Title:
+        <span class="post-title">
+            <%= link_to post.title, post_path(post) %>
+        </span>,
+        <span class="post-like">いいねの数: <%= post.favorites.count %></span> ,
+        <span class="post-comment">コメントの数：<%= post.comments.count %></span>
+       </h3>
+  
+    <% end %>
+
+</center>
+</table></br>
+
+
+

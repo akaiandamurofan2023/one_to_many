@@ -1,0 +1,11 @@
+<center><h1>MY FOLLOWERS</h1></center>
+
+<table class="table table-striped">
+  <% @followers.each do |user|  %>
+    <tr>
+      <td><h2>ユーザー名 : <%= user.name %></h2></td>
+
+      </td>
+    </tr> 
+  <% end %>
+</table>

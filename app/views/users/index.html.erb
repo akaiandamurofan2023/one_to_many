@@ -1,0 +1,18 @@
+<center>
+<table>
+ <h1>LIST OF USERS</h1> 
+<% @users.each do |user| %>
+  <tr>
+    <h2>ユーザー名 : <%= link_to user.name,user_path(user) %>
+      <% if current_user != user %>
+        <% if user.followed_by?(current_user) %>
+          <%= link_to "follow解除",user_relationships_path(user),method: :delete %>
+        <% else %>
+          <%= link_to "followする",user_relationships_path(user),method: :post %>
+        <% end %>
+      <% end%>
+    </h2>
+  </tr>
+<% end %>
+</table>
+</center>

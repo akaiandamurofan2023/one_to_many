@@ -1,0 +1,48 @@
+<center><h1>Logged in as <%= current_user.name %></h1></center>
+
+<p id="notice"><%= notice %></p>
+
+
+
+<center><h2>投稿一覧</h2></center>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>TITLE</th>
+      <th>CONTENT</th>
+      <th>IMAGE</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+
+<tbody>
+  <% @posts.each do |post| %>
+    <tr>
+      <td><%= link_to post.title, post_path(post)%></td>
+      <td><%= post.body %></td>
+      <% if post.image? %>
+    　 <td><%=  image_tag post.image.url%></td>
+    　<% else %>
+    　 <td>NO IMAGE</td>
+    　<% end %>
+       <td>いいねの数: <%= post.favorites.count %></td>
+       <td>コメントの数：<%= post.comments.count %></td>
+       <td>
+        <% if post.favorited_by? current_user %>
+        <button class="btn btn-warning" type="button"><%= link_to "いいね解除", post_favorites_path(post), method: :delete %></button>
+        <% else %>
+        <button class="btn btn-warning" type="button"><%= link_to "いいね", post_favorites_path(post), method: :post %></button>
+        <% end %>
+       </td>
+    </tr>
+  <% end %>
+</tbody>
+</table>
+
+<center><%= paginate @posts %></center>
+
+<br>
+<button class="btn btn-large btn-info" type="button"><%= link_to 'New Post', new_post_path %></button>
+
