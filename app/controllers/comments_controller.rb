@@ -15,7 +15,7 @@ before_action :authenticate_user!
 	  comment = @post.comments.find(params[:id])
 	  comment.destroy
 
-	  if @comment.destroy
+	  if comment.destroy
 	  redirect_to post_url(params[:post_id]), notice: "コメントを削除しました"
 	  else
 	    redirect_to post_url(@post), notice: "コメント削除できません"
